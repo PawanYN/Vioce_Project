@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .navbar {
+            background-color: #28a745;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+        .navbar h2 { margin: 0; }
+        .profile-container {
+            display: flex;
+            align-items: center;
+        }
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+        .logout {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h2>Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
+        <div class="profile-container">
+            {% if user.profile_picture %}
+                <img src="{{ user.profile_picture }}" alt="Profile Pic" class="profile-pic">
+            {% else %}
+                <!-- Use default profile image -->
+                <img src="{{ url_for('static', filename='default_profile.png') }}" alt="Default Profile" class="profile-pic">
+            {% endif %}
+            <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+        </div>
+    </div>
+
+    <h3 style="text-align: center; margin-top: 50px;">This is your home page after login!</h3>
+
+</body>
+</html>
