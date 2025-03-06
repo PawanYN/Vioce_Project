@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Books</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 20px; }
+        table { width: 80%; margin: auto; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid black; text-align: center; }
+        th { background-color: #28a745; color: white; }
+        .status-not-started { background-color: #f8d7da; }  /* Red */
+        .status-reading { background-color: #fff3cd; }  /* Yellow */
+        .status-completed { background-color: #d4edda; }  /* Green */
+        button { margin-top: 20px; padding: 10px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #218838; }
+    </style>
+</head>
+<body>
+
+    <h2>My Book List</h2>
+
+    <form action="/user_books" method="POST">
+        <table>
+            <tr>
+                <th>Book ID</th>
+                <th>Book Name</th>
+                <th>Semester</th>
+                <th>Status</th>
+            </tr>
+            {% for book in books %}
+            <tr class="{% if user_books.get(book.id) == 'Completed' %}status-completed
+                        {% elif user_books.get(book.id) == 'Reading' %}status-reading
+                        {% else %}status-not-started{% endif %}">
+                <td>{{ book.id }}</td>
+                <td>{{ book.name }}</td>
+                <td>{{ book.semester }}</td>
+                <td>
+                    <select name="book_{{ book.id }}">
+                        <option value="Not Started" {% if user_books.get(book.id) == "Not Started" %}selected{% endif %}>Not Started</option>
+                        <option value="Reading" {% if user_books.get(book.id) == "Reading" %}selected{% endif %}>Reading</option>
+                        <option value="Completed" {% if user_books.get(book.id) == "Completed" %}selected{% endif %}>Completed</option>
+                    </select>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+</body>
+</html>

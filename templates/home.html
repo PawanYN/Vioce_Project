@@ -15,6 +15,19 @@
             color: white;
         }
         .navbar h2 { margin: 0; }
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
         .profile-container {
             display: flex;
             align-items: center;
@@ -24,11 +37,7 @@
             height: 40px;
             border-radius: 50%;
             margin-left: 10px;
-        }
-        .logout {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
+            cursor: pointer; /* Add pointer cursor */
         }
     </style>
 </head>
@@ -36,18 +45,31 @@
 
     <div class="navbar">
         <h2>Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
-        <div class="profile-container">
-            {% if user.profile_picture %}
-                <img src="{{ user.profile_picture }}" alt="Profile Pic" class="profile-pic">
-            {% else %}
-                <!-- Use default profile image -->
-                <img src="{{ url_for('static', filename='default_profile.png') }}" alt="Default Profile" class="profile-pic">
-            {% endif %}
+        <div class="nav-links">
+            <a href="{{ url_for('profile') }}">Profile</a>  <!-- Profile Button -->
             <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+            <div class="profile-container">
+                {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture }}" alt="Profile Pic" class="profile-pic" id="profilePic">
+                {% else %}
+                    <img src="{{ url_for('static', filename='default_profile.png') }}" alt="Default Profile" class="profile-pic" id="profilePic">
+                {% endif %}
+            </div>
         </div>
     </div>
 
     <h3 style="text-align: center; margin-top: 50px;">This is your home page after login!</h3>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var profilePic = document.getElementById("profilePic");
+            if (profilePic) {
+                profilePic.addEventListener("dblclick", function () {
+                    window.location.href = "{{ url_for('profile') }}";
+                });
+            }
+        });
+    </script>
 
 </body>
 </html>

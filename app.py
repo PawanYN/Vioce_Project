@@ -30,6 +30,21 @@ class User(db.Model):
     security_question = db.Column(db.String(100))
     security_answer = db.Column(db.String(100))
 
+class Book(db.model):
+    id=db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String(100),nullable=False)
+    semester=db.Column(db.Integer,nullable=True)
+
+# New Table to Track User's Book Reading Status
+class UserBook(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey("book.id"), nullable=False)
+    status = db.Column(db.String(20), nullable=False, default="Not Started")  # Options: Not Started, Reading, Completed
+
+    user = db.relationship("User", backref=db.backref("user_books", lazy=True))
+    book = db.relationship("Book", backref=db.backref("book_users", lazy=True))
+    
 # Create database tables
 with app.app_context():
     db.create_all()
@@ -123,6 +138,69 @@ def home():
 def logout():
     session.clear()
     return redirect(url_for("login"))
+
+@app.route("/profile", methods=["GET", "POST"])
+def profile():
+    if "user_id" not in session:
+        return redirect(url_for("login"))  # Redirect if not logged in
+
+    user = User.query.get(session["user_id"])
+
+    if request.method == "POST":
+        # Update user details
+        user.first_name = request.form["first_name"]
+        user.last_name = request.form["last_name"]
+        user.email = request.form["email"]
+        user.mobile = request.form["mobile"]
+        user.gender = request.form["gender"]
+        user.dob = request.form["dob"]
+        user.address = request.form["address"]
+
+        # Handle profile picture upload
+        if "profile_picture" in request.files:
+            file = request.files["profile_picture"]
+            if file.filename:
+                profile_picture_path = os.path.join("static/uploads", file.filename)
+                file.save(profile_picture_path)
+                user.profile_picture = profile_picture_path  # Save to DB
+
+        db.session.commit()
+        flash("Profile updated successfully!", "success")
+        return render_template("profile.html", user=user)  # Reload profile page with updated data
+
+    return render_template("profile.html", user=user)
+
+
+@app.route("/user_books", methods=["GET", "POST"])
+def user_books():
+    if "user_id" not in session:
+        return redirect(url_for("login"))  # Redirect if not logged in
+
+    user_id = session["user_id"]
+    books = Book.query.all()
+
+    # Fetch the user's current book statuses
+    user_books = {ub.book_id: ub.status for ub in UserBook.query.filter_by(user_id=user_id).all()}
+
+    if request.method == "POST":
+        for book in books:
+            status = request.form.get(f"book_{book.id}", "Not Started")  # Default to "Not Started"
+
+            # Check if the user already has an entry for this book
+            user_book = UserBook.query.filter_by(user_id=user_id, book_id=book.id).first()
+
+            if user_book:
+                user_book.status = status  # Update status
+            else:
+                new_user_book = UserBook(user_id=user_id, book_id=book.id, status=status)
+                db.session.add(new_user_book)
+
+        db.session.commit()
+        flash("Book statuses updated successfully!", "success")
+        return redirect(url_for("user_books"))
+
+    return render_template("user_books.html", books=books, user_books=user_books)
+
 
 # Display Registered Users
 @app.route("/controler")
