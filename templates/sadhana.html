@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Sadhana Entry</title>
+</head>
+<body>
+
+    <h2>Fill Your Daily Sadhana</h2>
+    
+    <form action="/sadhana" method="POST">
+        <label>NIDRA - To Bed (Points):</label>
+        <input type="number" name="nidra_to_bed" value="{{ sadhana.nidra_to_bed if sadhana else 0 }}" required><br>
+
+        <label>NIDRA - Wake Up (Points):</label>
+        <input type="number" name="nidra_wakeup" value="{{ sadhana.nidra_wakeup if sadhana else 0 }}" required><br>
+
+        <label>NIDRA - Day Sleep (Points):</label>
+        <input type="number" name="nidra_day_sleep" value="{{ sadhana.nidra_day_sleep if sadhana else 0 }}" required><br>
+
+        <label>JAPA (Points):</label>
+        <input type="number" name="japa" value="{{ sadhana.japa if sadhana else 0 }}" required><br>
+
+        <label>PATHAN & SRAVANA - Reading Books (Points):</label>
+        <input type="number" name="pathan_books" value="{{ sadhana.pathan_books if sadhana else 0 }}" required><br>
+
+        <label>Personal Hearing (Points):</label>
+        <input type="number" name="hearing" value="{{ sadhana.hearing if sadhana else 0 }}" required><br>
+
+        <label>Mangal Arati (Attendance Points):</label>
+        <input type="number" name="mangal_arati" value="{{ sadhana.mangal_arati if sadhana else 0 }}" required><br>
+
+        <label>Morning Class (Attendance Points):</label>
+        <input type="number" name="morning_class" value="{{ sadhana.morning_class if sadhana else 0 }}" required><br>
+
+        <button type="submit">Save Sadhana</button>
+    </form>
+
+</body>
+</html>

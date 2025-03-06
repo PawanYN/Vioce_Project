@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash,session
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from datetime import date, datetime, timedelta
+
 import os
 
 app = Flask(__name__)
@@ -38,12 +40,32 @@ class Book(db.Model):
 # New Table to Track User's Book Reading Status
 class UserBook(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    book_id = db.Column(db.Integer, db.ForeignKey("book.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey("book.id", ondelete="CASCADE"), nullable=False)
     status = db.Column(db.String(20), nullable=False, default="Not Started")  # Options: Not Started, Reading, Completed
 
     user = db.relationship("User", backref=db.backref("user_books", lazy=True))
     book = db.relationship("Book", backref=db.backref("book_users", lazy=True))
+    
+class Sadhana(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    date = db.Column(db.Date, nullable=False)  # Date of entry
+    nidra_to_bed = db.Column(db.Integer, default=0)  # Sleep time points
+    nidra_wakeup = db.Column(db.Integer, default=0)  # Wake up points
+    nidra_day_sleep = db.Column(db.Integer, default=0)  # Day sleep points
+    japa = db.Column(db.Integer, default=0)  # Japa points
+    pathan_books = db.Column(db.Integer, default=0)  # Reading books points
+    hearing = db.Column(db.Integer, default=0)  # Hearing points
+    mangal_arati = db.Column(db.Integer, default=0)  # Mangal Arati attendance
+    morning_class = db.Column(db.Integer, default=0)  # Morning class attendance
+
+    user = db.relationship("User", backref=db.backref("sadhana_records", lazy=True))
+
+# Apply changes
+with app.app_context():
+    db.create_all()
+
     
 # Create database tables
 with app.app_context():
@@ -205,8 +227,76 @@ def user_books():
 # Display Registered Users
 @app.route("/controler")
 def controler():
+    if "user_id" not in session:
+        return redirect(url_for("login"))  # Restrict access
+
     users = User.query.all()
-    return render_template("controler.html", users=users)
+    books = Book.query.all()
+    return render_template("controler.html", users=users, books=books)
+
+@app.route("/add_book", methods=["POST"])
+def add_book():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    book_name = request.form["book_name"]
+    semester = request.form["semester"]
+
+    new_book = Book(name=book_name, semester=int(semester))
+    db.session.add(new_book)
+    db.session.commit()
+
+    flash("Book added successfully!", "success")
+    return redirect(url_for("controler"))
+
+@app.route("/delete_book/<int:book_id>")
+def delete_book(book_id):
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    
+    # Delete related user_book records first
+    UserBook.query.filter_by(book_id=book_id).delete()
+    
+    # Now delete the book
+    book = Book.query.get(book_id)
+    if book:
+        db.session.delete(book)
+        db.session.commit()
+        flash("Book deleted successfully!", "success")
+
+    return redirect(url_for("controler"))
+
+@app.route("/sadhana", methods=["GET", "POST"])
+def sadhana():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    user_id = session["user_id"]
+    today = date.today()
+
+    # Check if entry already exists
+    sadhana_entry = Sadhana.query.filter_by(user_id=user_id, date=today).first()
+
+    if request.method == "POST":
+        if not sadhana_entry:
+            sadhana_entry = Sadhana(user_id=user_id, date=today)
+
+        sadhana_entry.nidra_to_bed = int(request.form.get("nidra_to_bed", 0))
+        sadhana_entry.nidra_wakeup = int(request.form.get("nidra_wakeup", 0))
+        sadhana_entry.nidra_day_sleep = int(request.form.get("nidra_day_sleep", 0))
+        sadhana_entry.japa = int(request.form.get("japa", 0))
+        sadhana_entry.pathan_books = int(request.form.get("pathan_books", 0))
+        sadhana_entry.hearing = int(request.form.get("hearing", 0))
+        sadhana_entry.mangal_arati = int(request.form.get("mangal_arati", 0))
+        sadhana_entry.morning_class = int(request.form.get("morning_class", 0))
+
+        db.session.add(sadhana_entry)
+        db.session.commit()
+        flash("Sadhana saved successfully!", "success")
+        return redirect(url_for("sadhana"))
+
+    return render_template("sadhana.html", sadhana=sadhana_entry)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
