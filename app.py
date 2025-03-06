@@ -30,7 +30,7 @@ class User(db.Model):
     security_question = db.Column(db.String(100))
     security_answer = db.Column(db.String(100))
 
-class Book(db.model):
+class Book(db.Model):
     id=db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(100),nullable=False)
     semester=db.Column(db.Integer,nullable=True)
