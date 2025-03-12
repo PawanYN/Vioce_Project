@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Weekly Target</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .target-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .target-box {
+            width: 45%;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .target-box h3 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .target-box input, .target-box select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        .save-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="main-container">
+        {% include 'verticalbar_sadhana.html' %}
+
+        <div class="content-container">
+            <h2>Set Weekly Target ({{ start_date.strftime('%d %b %Y') }} - {{ end_date.strftime('%d %b %Y') }})</h2>
+
+            <form method="POST">
+                <div class="target-container">
+
+                    <!-- 📚 Book Reading Section -->
+                    <div class="target-box">
+                        <h3>📚 Book Reading</h3>
+                        <label>Book Reading Hours (Per Week)</label>
+                        <input type="number" step="0.5" name="book_reading_hours" value="{{ target_entry.book_reading_hours if target_entry else 5 }}" min="0">
+                    </div>
+
+                    <!-- 🎧 Personal Hearing Section -->
+                    <div class="target-box">
+                        <h3>🎧 Personal Hearing</h3>
+                        <label>Personal Hearing Hours (Per Week)</label>
+                        <input type="number" step="0.5" name="personal_hearing_hours" value="{{ target_entry.personal_hearing_hours if target_entry else 3 }}" min="0">
+                    </div>
+
+                    <!-- 📖 Study Hours Section -->
+                    <div class="target-box">
+                        <h3>📖 Study Hours</h3>
+                        <label>Completing Study Hours (Per Week)</label>
+                        <input type="number" step="0.5" name="study_hours" value="{{ target_entry.study_hours if target_entry else 10 }}" min="0">
+                    </div>
+
+                    <!-- 🎓 College Classes Section -->
+                    <div class="target-box">
+                        <h3>🎓 College Classes</h3>
+                        <label>Total Number of College Classes (Per Week)</label>
+                        <input type="number" name="college_classes" value="{{ target_entry.college_classes if target_entry else 20 }}" min="0">
+                    </div>
+
+                </div>
+
+                <button type="submit" class="save-button">Save Weekly Target</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

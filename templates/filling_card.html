@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filling Sadhana Card</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <!-- Include Upper Navbar -->
+    {% include 'navbar.html' %}
+    
+    <div class="main-container">
+        <!-- Include Left Sidebar -->
+        {% include 'verticalbar_sadhana.html' %}
+        
+        <div class="content-container">
+            <h2>Filling Sadhana Card</h2>
+            <!-- Empty for now, will add step by step -->
+            <form method="POST" action="{{ url_for('filling_card', date=selected_date) }}" class="sadhana-form">
+                
+                <label>NIDRA: To Bed</label>
+                <select name="nidra_to_bed">
+                    <option value="" {% if not sadhana_entry or sadhana_entry.nidra_to_bed is none %}selected{% endif %}>-- Select --</option>
+                    <option value="25" {% if sadhana_entry and sadhana_entry.nidra_to_bed == 25 %}selected{% endif %}>9:15 pm or before - 25 marks</option>
+                    <option value="20" {% if sadhana_entry and sadhana_entry.nidra_to_bed == 20 %}selected{% endif %}>Before 9:30 pm - 20 marks</option>
+                    <option value="15" {% if sadhana_entry and sadhana_entry.nidra_to_bed == 15 %}selected{% endif %}>Before 9:40 pm - 15 marks</option>
+                    <option value="10" {% if sadhana_entry and sadhana_entry.nidra_to_bed == 10 %}selected{% endif %}>Before 9:50 pm - 10 marks</option>
+                    <option value="5" {% if sadhana_entry and sadhana_entry.nidra_to_bed == 5 %}selected{% endif %}>Before 10:00 pm - 5 marks</option>
+                    <option value="0" {% if sadhana_entry and sadhana_entry.nidra_to_bed == 0 %}selected{% endif %}>Before 10:10 pm - 0 marks</option>
+                    <option value="-5" {% if sadhana_entry and sadhana_entry.nidra_to_bed == -5 %}selected{% endif %}>After 10:10 pm - (-5) marks</option>
+                </select>
+                
+                <label>NIDRA: Wake Up</label>
+                <select name="nidra_wakeup">
+                    <option value="" {% if not sadhana_entry or sadhana_entry.nidra_wakeup is none %}selected{% endif %}>-- Select --</option>
+                    <option value="25" {% if sadhana_entry and sadhana_entry.nidra_wakeup == 25 %}selected{% endif %}>3:20 am or before - 25 marks</option>
+                    <option value="20" {% if sadhana_entry and sadhana_entry.nidra_wakeup == 20 %}selected{% endif %}>Before 3:30 am - 20 marks</option>
+                    <option value="15" {% if sadhana_entry and sadhana_entry.nidra_wakeup == 15 %}selected{% endif %}>Before 3:40 am - 15 marks</option>
+                    <option value="10" {% if sadhana_entry and sadhana_entry.nidra_wakeup == 10 %}selected{% endif %}>Before 3:50 am - 10 marks</option>
+                    <option value="5" {% if sadhana_entry and sadhana_entry.nidra_wakeup == 5 %}selected{% endif %}>Before 3:55 am - 5 marks</option>
+                    <option value="0" {% if sadhana_entry and sadhana_entry.nidra_wakeup == 0 %}selected{% endif %}>Before 4:00 am - 0 marks</option>
+                    <option value="-5" {% if sadhana_entry and sadhana_entry.nidra_wakeup == -5 %}selected{% endif %}>After 4:00 am - (-5) marks</option>
+                </select>
+                
+                <label>NIDRA: Day Sleep</label>
+                <select name="nidra_day_sleep">
+                    <option value="" {% if not sadhana_entry or sadhana_entry.nidra_day_sleep is none %}selected{% endif %}>-- Select --</option>
+                    <option value="25" {% if sadhana_entry and sadhana_entry.nidra_day_sleep == 25 %}selected{% endif %}>30 min or less - 25 marks</option>
+                    <option value="20" {% if sadhana_entry and sadhana_entry.nidra_day_sleep == 20 %}selected{% endif %}>60 min - 20 marks</option>
+                    <option value="15" {% if sadhana_entry and sadhana_entry.nidra_day_sleep == 15 %}selected{% endif %}>70 min - 15 marks</option>
+                    <option value="10" {% if sadhana_entry and sadhana_entry.nidra_day_sleep == 10 %}selected{% endif %}>80 min - 10 marks</option>
+                    <option value="5" {% if sadhana_entry and sadhana_entry.nidra_day_sleep == 5 %}selected{% endif %}>90 min - 5 marks</option>
+                    <option value="0" {% if sadhana_entry and sadhana_entry.nidra_day_sleep == 0 %}selected{% endif %}>100 min - 0 marks</option>
+                    <option value="-5" {% if sadhana_entry and sadhana_entry.nidra_day_sleep == -5 %}selected{% endif %}>More than 100 min - (-5) marks</option>
+                </select>
+                
+                <label>JAPA</label>
+                <select name="japa">
+                    <option value="" {% if not sadhana_entry or sadhana_entry.japa is none %}selected{% endif %}>-- Select --</option>
+                    <option value="25" {% if sadhana_entry and sadhana_entry.japa == 25 %}selected{% endif %}>Before 8:30 am - 25 marks</option>
+                    <option value="20" {% if sadhana_entry and sadhana_entry.japa == 20 %}selected{% endif %}>Before 2:00 pm - 20 marks</option>
+                    <option value="15" {%if sadhana_entry and sadhana_entry.japa == 15 %}selected{% endif %}>Before 3:00 pm - 15 marks</option>
+                    <option value="10" {%if sadhana_entry and sadhana_entry.japa == 10 %}selected{% endif %}>Before 6:00 pm - 10 marks</option>
+                    <option value="5" {%if sadhana_entry and sadhana_entry.japa == 5 %}selected{% endif %}>Before 8:00 pm - 5 marks</option>
+                    <option value="0" {%if sadhana_entry and sadhana_entry.japa == 0 %}selected{% endif %}>After 8:00 pm - 0 marks</option>
+                </select>
+                
+                <label>Pathan Books (Hours per week)</label>
+                <input type="number" name="pathan_books" min="0" max="7" value="{{ sadhana_entry.pathan_books if sadhana_entry else '' }}">
+                
+                <label>Personal Hearing (Hours per week)</label>
+                <input type="number" name="hearing" min="0" max="7" value="{{ sadhana_entry.hearing if sadhana_entry else '' }}">
+
+                <label>Counselor class(once a week)</label>
+                <input type="number" name="counselor_class" min="0" max="7" value="{{ sadhana_entry.counselor_class if sadhana_entry else '' }}">
+                
+                <label>Mangal Arti (on time?)</label>
+                <select name="mangal_arati">
+                    <option value="" {% if not sadhana_entry or sadhana_entry.mangal_arati is none %}selected{% endif %}>-- Select --</option>
+                    <option value="5" {% if sadhana_entry and sadhana_entry.mangal_arati == 5 %}selected{% endif %}>Present - 5 marks</option>
+                    <option value="3" {% if sadhana_entry and sadhana_entry.mangal_arati == 3 %}selected{% endif %}>Late - 3 marks</option>
+                    <option value="0" {% if sadhana_entry and sadhana_entry.mangal_arati == 0 %}selected{% endif %}>Absent - 0 marks</option>
+                </select>
+                
+                <label>Morning Class (on time?)</label>
+                <select name="morning_class">
+                    <option value="" {% if not sadhana_entry or sadhana_entry.morning_class is none %}selected{% endif %}>-- Select --</option>
+                    <option value="5" {% if sadhana_entry and sadhana_entry.morning_class == 5 %}selected{% endif %}>Present - 5 marks</option>
+                    <option value="3" {% if sadhana_entry and sadhana_entry.morning_class == 3 %}selected{% endif %}>Late - 3 marks</option>
+                    <option value="0" {% if sadhana_entry and sadhana_entry.morning_class == 0 %}selected{% endif %}>Absent - 0 marks</option>
+                </select>
+
+                <label>Completing Study Target</label>
+                <input type="number" name="study_target" min="0" max="24" value="{{ sadhana_entry.study_target if sadhana_entry else '' }}">
+
+                <label>Attending college class</label>
+                <input type="number" name="college_class" min="0" max="7" value="{{ sadhana_entry.college_class if sadhana_entry else '' }}">
+
+                <label>Cleanliness (Fresh Dhoti Kurta in morning program, Bathing if slept more than 1 hour)</label>
+                <select name="cleanliness">
+                    <option value="" {% if not sadhana_entry or sadhana_entry.cleanliness is none %}selected{% endif %}>-- Select --</option>
+                    <option value="5" {% if sadhana_entry and sadhana_entry.cleanliness == 5 %}selected{% endif %}>Dhoti Kurta - 5 marks</option>
+                    <option value="0" {% if sadhana_entry and sadhana_entry.cleanliness == 0 %}selected{% endif %}>Not in Dhoti Kurta - 0 marks</option>
+                </select>
+
+                <label>Filling Sadhana Card</label>
+                <select name="sadhana_card_filled">
+                    <option value="" {% if not sadhana_entry or sadhana_entry.sadhana_card_filled is none %}selected{% endif %}>-- Select --</option>
+                    <option value="5" {% if sadhana_entry and sadhana_entry.sadhana_card_filled == 5 %}selected{% endif %}>Filled - 5 marks</option>
+                    <option value="0" {% if sadhana_entry and sadhana_entry.sadhana_card_filled == 0 %}selected{% endif %}>Didn't Filled on same day - 0 marks</option>
+                </select>
+
+                <label>Cleaning Alloted Area </label>
+                <select name="cleaning_alloted_area">
+                    <option value="" {% if not sadhana_entry or sadhana_entry.cleaning_alloted_area is none %}selected{% endif %}>-- Select --</option>
+                    <option value="5" {% if sadhana_entry and sadhana_entry.cleaning_alloted_area == 5 %}selected{% endif %}>Cleaned Alloted area - 5 marks</option>
+                    <option value="0" {% if sadhana_entry and sadhana_entry.cleaning_alloted_area == 0 %}selected{% endif %}>Didn't clean Alloted area - 0 marks</option>
+                </select>
+                
+                <button type="submit" class="save-button">Save</button>
+            </form>
+    </div>
+</body>
+</html>

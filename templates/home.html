@@ -1,136 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        
-        /* Navbar */
-        .navbar {
-            background-color: #28a745;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-        }
-        .navbar h2 { margin: 0; }
-        .nav-links {
-            display: flex;
-            align-items: center;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 16px;
-        }
-        .nav-links a:hover {
-            text-decoration: underline;
-        }
-        .profile-container {
-            display: flex;
-            align-items: center;
-        }
-        .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        /* Blog Section */
-        .blog-section {
-            width: 80%;
-            margin: 30px auto;
-            text-align: center;
-        }
-        .blog-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .blog-box {
-            width: 300px;
-            height: 150px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-        .blog-box:hover {
-            background: #f1f1f1;
-        }
-        .blog-box h3 {
-            margin: 0;
-            color: #28a745;
-        }
-        .blog-box p {
-            color: #555;
-            font-size: 14px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      /* Blog Section */
+      .blog-section {
+        width: 80%;
+        margin: 30px auto;
+        text-align: center;
+      }
+      .blog-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .blog-box {
+        width: 300px;
+        height: 150px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      .blog-box:hover {
+        background: #f1f1f1;
+      }
+      .blog-box h3 {
+        margin: 0;
+        color: #28a745;
+      }
+      .blog-box p {
+        color: #555;
+        font-size: 14px;
+      }
     </style>
-</head>
-<body>
+  </head>
 
-    <!-- Navbar -->
-    <div class="navbar">
-        <h2>Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
-        <div class="nav-links">
-            <a href="{{ url_for('profile') }}">Profile</a>
-            <a href="{{ url_for('logout') }}" class="logout">Logout</a>
-            <div class="profile-container">
-                {% if user.profile_picture %}
-                    <img src="{{ user.profile_picture }}" alt="Profile Pic" class="profile-pic" id="profilePic">
-                {% else %}
-                    <img src="{{ url_for('static', filename='default_profile.png') }}" alt="Default Profile" class="profile-pic" id="profilePic">
-                {% endif %}
-            </div>
-        </div>
-    </div>
+  <body>
+    <!-- Include the Navbar -->
+    {% include 'navbar.html' %}
 
-    <h3 style="text-align: center; margin-top: 50px;">This is your home page after login!</h3>
+    <h3 style="text-align: center; margin-top: 50px">
+      This is your home page after login!
+    </h3>
 
     <!-- Blog Section -->
     <div class="blog-section">
-        <h2>Blogs</h2>
-        <div class="blog-container">
-
-            <!-- Reading Book Blog Box -->
-            <div class="blog-box" onclick="window.location.href='{{ url_for('user_books') }}'">
-                <h3>Reading Books Blog</h3>
-                <p>Track your book reading progress and explore recommended books.</p>
-            </div>
-
-            <!-- Sadhana Blog Box -->
-            <div class="blog-box" onclick="window.location.href='{{ url_for('sadhana') }}'">
-                <h3>Sadhana Blogs</h3>
-                <p>Explore daily sadhana practices and spiritual growth techniques.</p>
-            </div>
-
+      <h2>Blogs</h2>
+      <div class="blog-container">
+        <!-- Reading Book Blog Box -->
+        <div
+          class="blog-box"
+          onclick="window.location.href='{{ url_for('user_books') }}'"
+        >
+          <h3>Reading Books Blog</h3>
+          <p>Track your book reading progress and explore recommended books.</p>
         </div>
+
+        <!-- Sadhana Blog Box -->
+        <div
+          class="blog-box"
+          onclick="window.location.href='{{ url_for('sadhana') }}'"
+        >
+          <h3>Sadhana Blogs</h3>
+          <p>
+            Explore daily sadhana practices and spiritual growth techniques.
+          </p>
+        </div>
+      </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var profilePic = document.getElementById("profilePic");
-            if (profilePic) {
-                profilePic.addEventListener("dblclick", function () {
-                    window.location.href = "{{ url_for('profile') }}";
-                });
-            }
-        });
-    </script>
-
-</body>
+  </body>
 </html>

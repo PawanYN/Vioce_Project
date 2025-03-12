@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .history-container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .history-box {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .date-inputs {
+            margin-bottom: 20px;
+        }
+        .date-inputs input {
+            padding: 5px;
+            margin: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    
+    <div class="history-container">
+        <h2>📜 Sadhana History</h2>
+
+        <div class="date-inputs">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" value="{{ start_date.strftime('%Y-%m-%d') }}">
+            
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" value="{{ end_date.strftime('%Y-%m-%d') }}">
+            
+            <button onclick="filterHistory()">🔍 Filter</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Nidra To Bed</th>
+                    <th>Nidra Wakeup</th>
+                    <th>Day Sleep</th>
+                    <th>Japa</th>
+                    <th>Book Reading</th>
+                    <th>Personal Hearing</th>
+                    <th>Counselor Class</th>
+                    <th>Mangal Arti</th>
+                    <th>Morning Class</th>
+                    <th>Study Hours</th>
+                    <th>Completing Study</th>
+                    <th>College Classes</th>
+                    <th>Cleanliness</th>
+                    <th>Filling Card</th>
+                    <th>Cleaning Alloted Area</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in sadhana_entries %}
+                <tr>
+                    <td>{{ entry.date.strftime('%d %b %Y') }}</td>
+                    <td>{{ entry.nidra_to_bed }}</td>
+                    <td>{{ entry.nidra_wakeup }}</td>
+                    <td>{{ entry.nidra_day_sleep }}</td>
+                    <td>{{ entry.japa }}</td>
+                    <td>{{ entry.pathan_books }}</td>
+                    <td>{{ entry.hearing }}</td>
+                    <td>{{ entry.counselor_class }}</td>
+                    <td>{{ entry.mangal_arati }}</td>
+                    <td>{{ entry.morning_class }}</td>
+                    <td>{{ entry.study_target }}</td>
+                    <td>{{ entry.study_target }}</td>
+                    <td>{{ entry.college_class }}</td>
+                    <td>{{ entry.cleanliness }}</td>
+                    <td>{{ entry.sadhana_card_filled }}</td>
+                    <td>{{ entry.cleaning_alloted_area }}</td>
+                    <td><a href="{{ url_for('filling_card', date=entry.date.strftime('%Y-%m-%d')) }}">✏️ Edit</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+
+        {% if not sadhana_entries %}
+        <p>No records found for this period.</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function filterHistory() {
+            let startDate = document.getElementById("start_date").value;
+            let endDate = document.getElementById("end_date").value;
+            if (startDate && endDate) {
+                window.location.href = "{{ url_for('history') }}?start_date=" + startDate + "&end_date=" + endDate;
+            }
+        }
+    </script>
+</body>
+</html>

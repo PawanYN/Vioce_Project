@@ -1,0 +1,26 @@
+<!-- Left Sidebar -->
+<div class="sidebar">
+    <h3>Options</h3>
+    <ul>
+        <li><a href="{{ url_for('filling_card', date=request.args.get('date', date.today().strftime('%Y-%m-%d'))) }}">Fill Sadhana Card</a></li>
+        <li><a href="{{ url_for('set_weekly_target', week_start=request.args.get('week_start', date.today().strftime('%Y-%m-%d'))) }}">Set your Targets</a></li>
+        <li><a href="{{ url_for('score_stat', week_start=request.args.get('week_start', date.today().strftime('%Y-%m-%d'))) }}">Score & Stat</a></li>
+        <li><a href="{{ url_for('history', start_date=request.args.get('start_date', (date.today() - timedelta(days=30)).strftime('%Y-%m-%d')), end_date=request.args.get('end_date', date.today().strftime('%Y-%m-%d'))) }}">History</a></li>
+    </ul>
+    <h3>Select Date</h3>
+    <input type="date" class="calendar" id="calendar" value="{{ request.args.get('date', date.today().strftime('%Y-%m-%d')) }}" onchange="updateDate(this.value)">
+</div>
+<!-- 
+<script>
+    function updateDate(selectedDate) {
+        window.location.href = "{{ url_for('filling_card') }}?date=" + selectedDate;
+    }
+</script> -->
+
+<script>
+    function updateDate(selectedDate) {
+        let currentURL = new URL(window.location.href); // Get current URL
+        currentURL.searchParams.set("date", selectedDate); // Update the "date" parameter
+        window.location.href = currentURL.toString(); // Reload page with new date
+    }
+</script>

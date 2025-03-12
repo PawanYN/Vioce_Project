@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Score & Stats</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <style>
+      .stats-container {
+        width: 80%;
+        margin: 20px auto;
+        text-align: center;
+      }
+      .stats-box {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        margin: 10px 0;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .progress-bar {
+        width: 60%;
+        background-color: #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        height: 20px;
+      }
+      .progress {
+        height: 100%;
+        background-color: #28a745;
+        text-align: center;
+        line-height: 20px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="main-container">
+      {% include 'verticalbar_sadhana.html' %}
+
+      <div class="stats-container">
+        <h2>
+          📊 Score & Stats ({{ start_date.strftime('%d %b %Y') }} - {{
+          end_date.strftime('%d %b %Y') }})
+        </h2>
+
+        <div class="stats-box">
+          <span>🛏️ Nidra To Bed</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.nidra_to_bed }}%"
+            >
+              {{ percentages.nidra_to_bed }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>⏰ Nidra Wakeup</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.nidra_wakeup }}%"
+            >
+              {{ percentages.nidra_wakeup }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>😴 Nidra Day Sleep</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.nidra_day_sleep }}%"
+            >
+              {{ percentages.nidra_day_sleep }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>📿 Japa</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: {{ percentages.japa }}%">
+              {{ percentages.japa }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>📚 Book Reading</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.pathan_books }}%"
+            >
+              {{ percentages.pathan_books }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>🎧 Personal Hearing</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: {{ percentages.hearing }}%">
+              {{ percentages.hearing }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>👨‍🏫 Counselor Class</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.counselor_class }}%"
+            >
+              {{ percentages.counselor_class }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>🕉️ Mangal Arati</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.mangal_arati }}%"
+            >
+              {{ percentages.mangal_arati }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>🌅 Morning Class</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.morning_class }}%"
+            >
+              {{ percentages.morning_class }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>📖 Study Hours</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.study_target }}%"
+            >
+              {{ percentages.study_target }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>🎓 College Classes</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.college_class }}%"
+            >
+              {{ percentages.college_class }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>🧼 Cleanliness</span>
+          <div class="progress-bar">
+            <div class="progress" style="width: {{ percentages.cleanliness }}%">
+              {{ percentages.cleanliness }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>📋 Sadhana Card Filled</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.sadhana_card_filled }}%"
+            >
+              {{ percentages.sadhana_card_filled }}%
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-box">
+          <span>🧹 Cleaning Alloted Area</span>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              style="width: {{ percentages.cleaning_alloted_area }}%"
+            >
+              {{ percentages.cleaning_alloted_area }}%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("week-picker")
+        .addEventListener("change", function () {
+          let selectedDate = this.value;
+          if (selectedDate) {
+            window.location.href =
+              "{{ url_for('score_stat') }}?week_start=" + selectedDate;
+          }
+        });
+    </script>
+  </body>
+</html>
