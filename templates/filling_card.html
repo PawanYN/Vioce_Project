@@ -68,13 +68,13 @@
                 </select>
                 
                 <label>Pathan Books (Hours per week)</label>
-                <input type="number" name="pathan_books" min="0" max="7" value="{{ sadhana_entry.pathan_books if sadhana_entry else '' }}">
+                <input type="number" name="pathan_books" min="0" max="30" value="{{ sadhana_entry.pathan_books if sadhana_entry else '' }}">
                 
                 <label>Personal Hearing (Hours per week)</label>
-                <input type="number" name="hearing" min="0" max="7" value="{{ sadhana_entry.hearing if sadhana_entry else '' }}">
+                <input type="number" name="hearing" min="0" max="30" value="{{ sadhana_entry.hearing if sadhana_entry else '' }}">
 
                 <label>Counselor class(once a week)</label>
-                <input type="number" name="counselor_class" min="0" max="7" value="{{ sadhana_entry.counselor_class if sadhana_entry else '' }}">
+                <input type="number" name="counselor_class" min="0" max="30" value="{{ sadhana_entry.counselor_class if sadhana_entry else '' }}">
                 
                 <label>Mangal Arti (on time?)</label>
                 <select name="mangal_arati">
@@ -96,7 +96,7 @@
                 <input type="number" name="study_target" min="0" max="24" value="{{ sadhana_entry.study_target if sadhana_entry else '' }}">
 
                 <label>Attending college class</label>
-                <input type="number" name="college_class" min="0" max="7" value="{{ sadhana_entry.college_class if sadhana_entry else '' }}">
+                <input type="number" name="college_class" min="0" max="30" value="{{ sadhana_entry.college_class if sadhana_entry else '' }}">
 
                 <label>Cleanliness (Fresh Dhoti Kurta in morning program, Bathing if slept more than 1 hour)</label>
                 <select name="cleanliness">
