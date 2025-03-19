@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Mission & Vision</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Animation for Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-center flex-col">
+
+    <!-- Some Placeholder Content Above -->
+    <div class="h-[100vh] flex justify-center items-center">
+        <h1 class="text-4xl font-bold text-gray-700">Scroll Down to See Our Mission & Vision</h1>
+    </div>
+
+    <!-- Our Mission and Vision Section -->
+    <section class="bg-white shadow-lg rounded-lg max-w-3xl w-full p-8 text-center mb-10">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 fade-in">Our Mission & Vision</h2>
+
+        <!-- Mission List -->
+        <div class="space-y-6">
+            <!-- Mission Item 1 -->
+            <div class="fade-in flex items-center bg-blue-100 border-l-4 border-blue-600 p-4 shadow-md rounded-md">
+                <span class="text-blue-600 text-2xl font-bold mr-4">1.</span>
+                <p class="text-lg text-gray-700">Given sessions to <span class="font-semibold text-blue-600">1000+ IITians</span></p>
+            </div>
+
+            <!-- Mission Item 2 -->
+            <div class="fade-in flex items-center bg-green-100 border-l-4 border-green-600 p-4 shadow-md rounded-md">
+                <span class="text-green-600 text-2xl font-bold mr-4">2.</span>
+                <p class="text-lg text-gray-700">Drug Deaddiction Programs</p>
+            </div>
+
+            <!-- Mission Item 3 -->
+            <div class="fade-in flex items-center bg-yellow-100 border-l-4 border-yellow-600 p-4 shadow-md rounded-md">
+                <span class="text-yellow-600 text-2xl font-bold mr-4">3.</span>
+                <p class="text-lg text-gray-700"><span class="font-semibold text-green-600">100+ boys</span> regularly Chanting</p>
+            </div>
+
+            <!-- Mission Item 4 -->
+            <div class="fade-in flex items-center bg-red-100 border-l-4 border-red-600 p-4 shadow-md rounded-md">
+                <span class="text-red-600 text-2xl font-bold mr-4">4.</span>
+                <p class="text-lg text-gray-700">Suicide Prevention Seminars</p>
+            </div>
+
+            <!-- Mission Item 5 -->
+            <div class="fade-in flex items-center bg-purple-100 border-l-4 border-purple-600 p-4 shadow-md rounded-md">
+                <span class="text-purple-600 text-2xl font-bold mr-4">5.</span>
+                <p class="text-lg text-gray-700">Students Acing Academics</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Scroll Animation (Triggers Every Time) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const fadeInElements = document.querySelectorAll(".fade-in");
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    } else {
+                        entry.target.classList.remove("visible"); // Removes the class when out of view
+                    }
+                });
+            }, { threshold: 0.3 }); // Adjust threshold for when the animation starts
+
+            fadeInElements.forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>

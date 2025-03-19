@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonies</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Demo styles -->
+    <style>
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+        }
+
+        .swiper-slide img {
+            display: block;
+            margin: auto;
+            width: 60vw;
+        }
+    </style>
+</head>
+
+<body>
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="VOICE_Images/voice_img1.jpg" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="Prabhupada_Image/q1.jpg" />
+                </div>
+                <div class="swiper-slide">
+                <img src="HH RNS images/q1.png" />
+            </div>
+            <div class="swiper-slide">
+                <img src="HH JPS images/q1.png" />
+            </div>
+            <div class="swiper-slide">
+                <img src="HH BCS Images/q1.png" />
+            </div>
+        </div>
+        <!-- <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div> -->
+    </div>
+    
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            effect: "fade",
+            speed: 2000,
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+        </script>
+</body>

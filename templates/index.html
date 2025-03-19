@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing</title>
+    <!-- <link rel="stylesheet" href="update_style.css" class="css"> -->
+    <!-- <link rel="stylesheet" href="latest_article.css" class="css"> -->
+    <!-- <link rel="stylesheet" href="misssio_achivement.css"> -->
+    <!-- <link rel="stylesheet" href="footer.css"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Demo styles -->
+    <style>
+        .swiper {
+            object-fit: contain;
+            /* margin: auto; */
+            width: 100%;
+            height: 100%;
+        }
+
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    </style>
+
+    <style>
+        .car-slide {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .nav-btn {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            transform: translateY(20px);
+            background-color: rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .nav-btn::after,
+        .nav-btn::before {
+            font-size: 20px;
+            color: white;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Nav Bar -->
+    <div id="navbar-container">
+        {% include 'navbar.html' %}
+    </div>
+
+    <section class="bg-gray-200">
+        <div class="py-2 px-4 mx-auto max-w-fit lg:py-10 lg:px-6">
+
+            <div class="mb-6 lg:mb-16 md:grid-cols-2 max-w-[90vw]">
+                <div
+                    class="mb-10 justify-center items-start bg-gray-50 rounded-lg shadow sm:flex flex-row-reverse dark:bg-gray-800 dark:border-gray-700">
+
+                    <img class="rounded-lg sm:rounded-lg w-[450px] m-auto" src="static/Prabhupada_Image/q1.jpg"
+                        alt="Bonnie Avatar">
+
+                    <div class="p-4">
+                        <div class="font-extrabold text-gray-900 dark:text-white uppercase text-center py-4">
+                            <a href="#">Dedicated to</a>
+                        </div>
+                        <div class="text-2xl font-extrabold text-gray-900 dark:text-white uppercase text-center py-2">
+                            <a href="#">HDG A.C. Bhaktivedanta Swami Prabhuapda</a>
+                        </div>
+                        <div class="font-extrabold text-gray-900 dark:text-white uppercase text-center">
+                            <a href="#">founder acharya: international society for krishna consciousness (ISKCON)</a>
+                        </div>
+
+                        <blockquote
+                            class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400 max-w-[60vw] border-l-4 border-blue-300 p-4">
+                            <span><i class='bx bxs-quote-alt-left'></i></span>
+                            ….try to recruit
+                            some of the intelligent class of student class to take up this Krsna
+                            Consciousness philosophy and study it carefully. Try to recruit some of such men to become
+                            our
+                            devotees. There is need for intelligent young men to train them up as future leaders and
+                            preachers to go all over the world for spreading the message of Lord Caitanya Mahaprabhu. If
+                            we
+                            simply go to the college on one night and leave immediately for another place, it will be
+                            difficult to make very much impression upon these students. I think it is better to stay at
+                            one
+                            place for some time, at least one week, or as long as the students are interested, and try
+                            to
+                            sell as many books as possible. After your lecture in the college you may request if there
+                            are
+                            any interested students, that they may make further programs for you in their homes, or in
+                            some
+                            club or hall, like that, so that you may remain some time longer and concentrate on
+                            recruiting
+                            two or three good men, whoever appears to be the most interested, and by your diligent
+                            preaching
+                            to them you may be able to persuade some of them to become our devotees. Of course we shall
+                            not
+                            expect them immediately to come into the temple, like that, but if at least the seed is
+                            planted
+                            and they begin chanting rounds and following the principles while continuing their studies
+                            at
+                            school, that is our great victory. And if they like, they may go and live in one of our
+                            centers,
+                            wherever they like, and learn further. But we shall not present Krsna Consciousness as
+                            anything
+                            dry or like set of rules and regulations only, no. Krsna Consciousness is the topmost
+                            philosophy
+                            also, the highest knowledge of educational experience, so try to impress this aspect of
+                            offering
+                            the perfect scientific understanding of everything as it is, not the temporary and
+                            unsatisfactory and incomplete understanding of things. Try to present everything very
+                            logically
+                            and always quoting our Sanskrit authorities in connection with the main points, and that
+                            will
+                            impress them greatly. Yes, and if you also yourselves write something daily, that will
+                            sharpen
+                            your use of language and you will be able to make your points very clear. And if you dress
+                            neatly and conduct yourselves properly, that will help further.
+                            <span><i class='bx bxs-quote-alt-right pl-2'></i></span><br>
+
+
+                            <span class="flex flex-row-reverse">- Letter to Satsvarupa, Hrdayananda 9 January
+                                1973</span>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="my-10 h-[2px] bg-gradient-to-r from-gray-500 via-gray-400 to-gray-300 w-full"></div>
+
+                <div
+                    class="my-2 justify-between bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+                    <!-- <img class="rounded-lg sm:rounded-none sm:rounded-l-lg w-fit object-center" src="VOICE_Images/voice_img1.jpg" alt="Michael Avatar"> -->
+                    <!-- slideshow -->
+                    <!-- Swiper -->
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="h-[40vw] w-[90vw]" src="static/VOICE_Images/voice_img1.jpg" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="h-[40vw] w-[90vw]" src="static/Prabhupada_Image/q2.png" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="h-[40vw] w-[90vw]" src="static/HH RNS images/q1.png" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="h-[40vw] w-[90vw] " src="static/HH JPS images/q1.png" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="h-[40vw] w-[90vw]" src="static/HH BCS Images/q1.png" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Swiper JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+                    <!-- Initialize Swiper -->
+                    <script>
+                        var swiper = new Swiper(".mySwiper", {
+                            spaceBetween: 30,
+                            effect: "fade",
+                            speed: 2000,
+                            loop: true,
+                            autoplay: {
+                                delay: 2500,
+                                disableOnInteraction: false,
+                            },
+                            navigation: {
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev",
+                            },
+                            pagination: {
+                                el: ".swiper-pagination",
+                                clickable: true,
+                            },
+                        });
+                    </script>
+
+                    <div class="py-2 px-5">
+                        <div class="flex justify-center items-center object-cover sm:w-80 lg:w-fit">
+                            <img src="static/voice_name.png" alt="">
+                        </div>
+                        <!-- <span class="text-gray-500 dark:text-gray-400">ISKCON GBC</span> -->
+                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400 max-w-[60vw] text-2xl">
+                            'VOICE' Stands for Vedic Oasis for Inspiration, Culture and Education. <br>
+
+                            It is an educational wing of ISKCON, which offer services to all age groups including young
+                            children, teenagers, college
+                            youth and working individuals.<br>
+
+                            Every society needs role models which can be emulated by masses. 'VOICE' aims to nurture
+                            individuals who can excel in their personal and professional life. Such individuals will be
+                            leading by example of principle centered living. <br>
+
+                            VOICE Offers various welfare training programs, courses, workshops, camps to faciliate the
+                            all
+                            round development of students & corporate professionals.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="my-10 h-[2px] bg-gradient-to-r from-gray-500 via-gray-400 to-gray-300 w-full"></div>
+
+                <div class="my-10 justify-between rounded-lg flex-row-reverse sm:flex ">
+                    <div>
+                        <div class="bg-gray-100 shadow-lg rounded-lg max-w-3xl w-full p-4 mb-2">
+
+                            <div class="w-full px-4">
+                                <h3 class="mb-10 text-3xl font-bold text-center uppercase">
+                                    latest blogs
+                                </h3>
+                            </div>
+
+                            <div class="w-full px-4 lg:w-[350px]">
+                                <div class="mb-12">
+                                    <ol class="space-y-10">
+                                        <li class="flex text-base text-gray-800">
+                                            <span
+                                                class="mr-2.5 flex h-[26px] w-full max-w-[26px] items-center justify-center rounded-full bg-blue-600 text-base text-white">
+                                                1
+                                            </span>
+                                            God and Gods
+                                        </li>
+                                        <li class="flex text-base text-gray-800 ">
+                                            <span
+                                                class="mr-2.5 flex h-[26px] w-full max-w-[26px] items-center justify-center rounded-full bg-blue-600 text-base text-white">
+                                                2
+                                            </span>
+                                            Ideal Worship or Idol Worship
+                                        </li>
+                                        <li class="flex text-base text-gray-800 ">
+                                            <span
+                                                class="mr-2.5 flex h-[26px] w-full max-w-[26px] items-center justify-center rounded-full bg-blue-600 text-base text-white">
+                                                3
+                                            </span>
+                                            Can Faith Be Reasonable
+                                        </li>
+                                        <li class="flex text-base text-gray-800 ">
+                                            <span
+                                                class="mr-2.5 flex h-[26px] w-full max-w-[26px] items-center justify-center rounded-full bg-blue-600 text-base text-white">
+                                                4
+                                            </span>
+                                            If God is One then why so many Religions
+                                        </li>
+                                        <li class="flex text-base text-gray-800">
+                                            <span
+                                                class="mr-2.5 flex h-[26px] w-full max-w-[26px] items-center justify-center rounded-full bg-blue-600 text-base text-white">
+                                                5
+                                            </span>
+                                            Life comes from Life
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boxicons CSS -->
+                    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+                    <!-- Testimonies -->
+                    <section class="w-full flex items-center justify-center">
+
+                        <!--  -->
+                        <div class="testimonies mySwiper max-w-[900px] w-full relative py-10 overflow-hidden">
+                            <div class="test-content swiper-wrapper">
+                                <div
+                                    class="car-slide swiper-slide items-center justify-center flex-col gap-5 text-center">
+                                    <img class="h-64 w-64 object-cover aspect-square rounded-full"
+                                        src="static/VOICE_Images/voice_img1.jpg" alt="image1">
+                                    <div class="details flex flex-col items-center">
+                                        <span class="text-2xl font-bold text-gray-800 uppercase">aryan bibhuti</span>
+                                        <span class="text-[18px] font-semibold text-gray-700">Computer Science and
+                                            Engineering IIT
+                                            Kharagpur, PhD MIT</span>
+                                    </div>
+                                    <div class="quote flex pl-2">
+                                        <i class='bx bxs-quote-left'></i>
+                                        <p class="w-full text-center text-xl">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+                                            libero saepe
+                                            quae repellendus. Amet reiciendis perspiciatis voluptatibus maiores sed
+                                            delectus sapiente
+                                            earum eum.
+                                        </p>
+                                        <i class='bx bxs-quote-right pr-2'></i>
+
+                                    </div>
+                                </div>
+
+                                <div class="car-slide swiper-slide flex items-center justify-center flex-col gap-5">
+                                    <img class="h-64 w-64 object-cover aspect-square rounded-full"
+                                        src="static/VOICE_Images/voice_img1.jpg" alt="image1">
+                                    <div class="details flex flex-col items-center">
+                                        <span class="text-2xl font-bold text-gray-800 uppercase">aryan bibhuti</span>
+                                        <span class="text-[18px] font-semibold text-gray-700">Computer Science and
+                                            Engineering IIT
+                                            Kharagpur, PhD MIT</span>
+                                    </div>
+                                    <div class="quote flex pl-2">
+                                        <i class='bx bxs-quote-left'></i>
+                                        <p class="w-full text-center text-xl">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+                                            libero saepe
+                                            quae repellendus. Amet reiciendis perspiciatis voluptatibus maiores sed
+                                            delectus sapiente
+                                            earum eum.
+                                        </p>
+                                        <i class='bx bxs-quote-right pr-2'></i>
+
+                                    </div>
+                                </div>
+
+                                <div class="car-slide swiper-slide flex items-center justify-center flex-col gap-5">
+                                    <img class="h-64 w-64 object-cover aspect-square rounded-full"
+                                        src="static/VOICE_Images/voice_img1.jpg" alt="image1">
+                                    <div class="details flex flex-col items-center">
+                                        <span class="text-2xl font-bold text-gray-800 uppercase">aryan bibhuti</span>
+                                        <span class="text-[18px] font-semibold text-gray-700">Computer Science and
+                                            Engineering IIT
+                                            Kharagpur, PhD MIT</span>
+                                    </div>
+                                    <div class="quote flex pl-2">
+                                        <i class='bx bxs-quote-left'></i>
+                                        <p class="w-full text-center text-xl">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+                                            libero saepe
+                                            quae repellendus. Amet reiciendis perspiciatis voluptatibus maiores sed
+                                            delectus sapiente
+                                            earum eum.
+                                        </p>
+                                        <i class='bx bxs-quote-right pr-2'></i>
+
+                                    </div>
+                                </div>
+
+                                <div class="car-slide swiper-slide flex items-center justify-center flex-col gap-5">
+                                    <img class="h-64 w-64 object-cover aspect-square rounded-full"
+                                        src="static/VOICE_Images/voice_img1.jpg" alt="image1">
+                                    <div class="details flex flex-col items-center">
+                                        <span class="text-2xl font-bold text-gray-800 uppercase">aryan bibhuti</span>
+                                        <span class="text-[18px] font-semibold text-gray-700">Computer Science and
+                                            Engineering IIT
+                                            Kharagpur, PhD MIT</span>
+                                    </div>
+                                    <div class="quote flex pl-2">
+                                        <i class='bx bxs-quote-left'></i>
+                                        <p class="w-full text-center text-xl">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+                                            libero saepe
+                                            quae repellendus. Amet reiciendis perspiciatis voluptatibus maiores sed
+                                            delectus sapiente
+                                            earum eum.
+                                        </p>
+                                        <i class='bx bxs-quote-right pr-2'></i>
+
+                                    </div>
+                                </div>
+
+                                <div class="car-slide swiper-slide flex items-center justify-center flex-col gap-5">
+                                    <img class="h-64 w-64 object-cover aspect-square rounded-full"
+                                        src="static/VOICE_Images/voice_img1.jpg" alt="image1">
+                                    <div class="details flex flex-col items-center">
+                                        <span class="text-2xl font-bold text-gray-800 uppercase">aryan bibhuti</span>
+                                        <span class="text-[18px] font-semibold text-gray-700">Computer Science and
+                                            Engineering IIT
+                                            Kharagpur, PhD MIT</span>
+                                    </div>
+                                    <div class="quote flex pl-2">
+                                        <i class='bx bxs-quote-left'></i>
+                                        <p class="w-full text-center text-xl">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
+                                            libero saepe
+                                            quae repellendus. Amet reiciendis perspiciatis voluptatibus maiores sed
+                                            delectus sapiente
+                                            earum eum.
+                                        </p>
+                                        <i class='bx bxs-quote-right pr-2'></i>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="swiper-button-next nav-btn"></div>
+                            <div class="swiper-button-prev nav-btn"></div>
+                            <div class="swiper-pagination"></div>
+
+                        </div>
+                    </section>
+
+                    <!-- Swiper JS -->
+
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+                    <!-- Initialize Swiper -->
+                    <script>
+                        var swiper = new Swiper(".testimonies", {
+                            slidesPerView: 1,
+                            grabCursor: true,
+                            loop: true,
+                            speed: 3000,
+                            autoplay: {
+                                delay: 2500,
+                                disableOnInteraction: false,
+                            },
+                            pagination: {
+                                el: ".swiper-pagination",
+                                clickable: true,
+                            },
+                            navigation: {
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev",
+                            },
+                        });
+                    </script>
+                </div>
+                <div class="my-10 h-[2px] bg-gradient-to-r from-gray-500 via-gray-400 to-gray-300 w-full"></div>
+
+                <div class="my-10 justify-between rounded-lg sm:flex ">
+                    <style>
+                        /* Custom Animation for Scroll */
+                        .fade-in {
+                            opacity: 0;
+                            transform: translateY(40px);
+                            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+                        }
+
+                        .fade-in.visible {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    </style>
+
+                    <!-- Our Mission and Vision Section -->
+                    <section class="bg-gray-100 shadow-lg rounded-lg max-w-4xl w-full p-4 mb-2">
+                        <h2 class="text-4xl font-bold text-gray-800 mb-6 fade-in uppercase text-center">Our Mission And
+                            Vision</h2>
+
+                        <!-- Mission List -->
+                        <div class="space-y-3">
+                            <!-- Mission Item 1 -->
+                            <div
+                                class="fade-in flex items-center bg-blue-100 border-l-4 border-blue-600 p-4 shadow-md rounded-md">
+                                <span class="text-blue-600 text-2xl font-bold mr-4">1.</span>
+                                <p class="text-sm text-gray-700">To systematically propagate spiritual knowledge to
+                                    society at large and to educate all people in the techniques of spiritual life in
+                                    order to check the imbalance of values in life and to achieve real unity and peace
+                                    in the world.
+                                    <!-- <span class="font-semibold text-blue-600">1000+ IITians</span></p> -->
+                            </div>
+
+                            <!-- Mission Item 2 -->
+                            <div
+                                class="fade-in flex items-center bg-green-100 border-l-4 border-green-600 p-4 shadow-md rounded-md">
+                                <span class="text-green-600 text-2xl font-bold mr-4">2.</span>
+                                <p class="text-sm text-gray-700">To propagate a consciousness of Krishna (God), as it is
+                                    revealed in the great scriptures of India, Bhagavad-gita and Srimad-Bhagavatam.</p>
+                            </div>
+
+                            <!-- Mission Item 3 -->
+                            <div
+                                class="fade-in flex items-center bg-yellow-100 border-l-4 border-yellow-600 p-4 shadow-md rounded-md">
+                                <span class="text-yellow-600 text-2xl font-bold mr-4">3.</span>
+                                <p class="text-sm text-gray-700"><span class="font-semibold text-green-600">To bring the
+                                        members of the Society together with each other and nearer to Krishna, the prime
+                                        entity, thus developing the idea within the members, and humanity at large, that
+                                        each soul is part and parcel of the quality of Godhead (Krishna).
+
+                                        <!-- </span> regularly Chanting</p> -->
+                            </div>
+
+                            <!-- Mission Item 4 -->
+                            <div
+                                class="fade-in flex items-center bg-red-100 border-l-4 border-red-600 p-4 shadow-md rounded-md">
+                                <span class="text-red-600 text-2xl font-bold mr-4">4.</span>
+                                <p class="text-sm text-gray-700">To teach and encourage the sankirtana movement,
+                                    congregational chanting of the holy name of God, as revealed in the teachings of
+                                    Lord Sri Caitanya Mahaprabhu.</p>
+                            </div>
+
+                            <!-- Mission Item 5 -->
+                            <div
+                                class="fade-in flex items-center bg-purple-100 border-l-4 border-purple-600 p-4 shadow-md rounded-md">
+                                <span class="text-purple-600 text-2xl font-bold mr-4">5.</span>
+                                <p class="text-sm text-gray-700">To erect for the members and for society at large a
+                                    holy place of transcendental pastimes dedicated to the personality of Krishna.</p>
+                            </div>
+
+                            <!-- Mission Item 6 -->
+                            <div
+                                class="fade-in flex items-center bg-purple-100 border-l-4 border-purple-600 p-4 shadow-md rounded-md">
+                                <span class="text-purple-600 text-2xl font-bold mr-4">6.</span>
+                                <p class="text-sm text-gray-700">To bring the members closer together for the purpose of
+                                    teaching a simpler, natural way of life.</p>
+                            </div>
+
+                            <!-- Mission Item 7 -->
+                            <div
+                                class="fade-in flex items-center bg-purple-100 border-l-4 border-purple-600 p-4 shadow-md rounded-md">
+                                <span class="text-purple-600 text-2xl font-bold mr-4">7.</span>
+                                <p class="text-sm text-gray-700">With a view towards achieving the aforementioned
+                                    purposes, to publish and distribute periodicals, magazines, books and other
+                                    writings.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Our Achivements -->
+                    <section class="bg-gray-100 shadow-lg rounded-lg max-w-3xl w-fit p-8 text-center mb-10">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6 fade-in uppercase">Our Achivements</h2>
+
+                        <!-- Mission List -->
+                        <div class="space-y-6">
+                            <!-- Mission Item 1 -->
+                            <div
+                                class="fade-in flex items-center bg-blue-100 border-l-4 border-blue-600 p-4 shadow-md rounded-md">
+                                <span class="text-blue-600 text-2xl font-bold mr-4">1.</span>
+                                <p class="text-lg text-gray-700">Given sessions to <span
+                                        class="font-semibold text-blue-600">1000+ IITians</span></p>
+                            </div>
+
+                            <!-- Mission Item 2 -->
+                            <div
+                                class="fade-in flex items-center bg-green-100 border-l-4 border-green-600 p-4 shadow-md rounded-md">
+                                <span class="text-green-600 text-2xl font-bold mr-4">2.</span>
+                                <p class="text-lg text-gray-700">Drug Deaddiction Programs</p>
+                            </div>
+
+                            <!-- Mission Item 3 -->
+                            <div
+                                class="fade-in flex items-center bg-yellow-100 border-l-4 border-yellow-600 p-4 shadow-md rounded-md">
+                                <span class="text-yellow-600 text-2xl font-bold mr-4">3.</span>
+                                <p class="text-lg text-gray-700"><span class="font-semibold text-green-600">100+
+                                        boys</span> regularly Chanting</p>
+                            </div>
+
+                            <!-- Mission Item 4 -->
+                            <div
+                                class="fade-in flex items-center bg-red-100 border-l-4 border-red-600 p-4 shadow-md rounded-md">
+                                <span class="text-red-600 text-2xl font-bold mr-4">4.</span>
+                                <p class="text-lg text-gray-700">Suicide Prevention Seminars</p>
+                            </div>
+
+                            <!-- Mission Item 5 -->
+                            <div
+                                class="fade-in flex items-center bg-purple-100 border-l-4 border-purple-600 p-4 shadow-md rounded-md">
+                                <span class="text-purple-600 text-2xl font-bold mr-4">5.</span>
+                                <p class="text-lg text-gray-700">Students Acing Academics</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- JavaScript for Scroll Animation (Triggers Every Time) -->
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const fadeInElements = document.querySelectorAll(".fade-in");
+
+                            const observer = new IntersectionObserver(entries => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        entry.target.classList.add("visible");
+                                    } else {
+                                        entry.target.classList.remove("visible"); // Removes the class when out of view
+                                    }
+                                });
+                            }, { threshold: 0.5 }); // Adjust threshold for when the animation starts
+
+                            fadeInElements.forEach(el => observer.observe(el));
+                        });
+                    </script>
+                </div>
+
+                <div class="my-10 h-[2px] bg-gradient-to-r from-gray-500 via-gray-400 to-gray-300 w-full"></div>
+
+                <div class="my-10 justify-between rounded-lg sm:flex flex-row-reverse">
+                    <div class="flex justify-center items-start">
+
+                        <!-- Map Section -->
+                        <div class="bg-gray-50 shadow-lg rounded-lg p-6 max-w-96 w-full text-center">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">📍 Our Location</h2>
+
+                            <!-- Square Map Div -->
+                            <div
+                                class="relative w-full aspect-square border border-gray-300 rounded-md overflow-hidden">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.9734966128713!2d87.28736467506985!3d22.316842079674718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1d43e01fc4bc79%3A0x7824c45b9d5c0528!2sDwaraka%20VOICE!5e0!3m2!1sen!2sin!4v1741888770577!5m2!1sen!2sin"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+
+                            <!-- Button to Open in Google Maps -->
+                            <a href="https://maps.app.goo.gl/3eojynKvB23Cqnq28" target="_blank"
+                                class="mt-4 inline-block bg-blue-600 text-white px-5 py-2 rounded-md text-lg font-medium hover:bg-blue-700 transition">
+                                View Larger Map
+                            </a>
+                        </div>
+
+                    </div>
+                    <style>
+                        /* Scroll Animation */
+                        .fade-in {
+                            opacity: 0;
+                            transform: translateY(30px);
+                            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+                        }
+
+                        .fade-in.visible {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    </style>
+
+                    <!-- News Bulletin Section -->
+                    <section class="bg-gray-100 shadow-md rounded-lg w-4xl p-6 text-center mb-10">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6 fade-in uppercase">📰 events and updates
+                        </h2>
+
+                        <!-- News List -->
+                        <div class="space-y-4">
+                            <!-- News Item 1 -->
+                            <div
+                                class="fade-in flex items-start bg-gray-50 border-l-4 border-gray-500 p-4 shadow-sm rounded-md">
+                                <span class="text-gray-700 text-lg font-bold mr-3">📅 [14/03/2025]</span>
+                                <p class="text-gray-800 text-lg">Gaur Purnima Mahamahotsav.</p>
+                            </div>
+
+                            <!-- News Item 2 -->
+                            <div
+                                class="fade-in flex items-start bg-gray-50 border-l-4 border-gray-500 p-4 shadow-sm rounded-md">
+                                <span class="text-gray-700 text-lg font-bold mr-3">📅 [15/03/2025]</span>
+                                <p class="text-gray-800 text-lg">Festival of Jagannath Mishra.</p>
+                            </div>
+
+                            <!-- News Item 3 -->
+                            <div
+                                class="fade-in flex items-start bg-gray-50 border-l-4 border-gray-500 p-4 shadow-sm rounded-md">
+                                <span class="text-gray-700 text-lg font-bold mr-3">📅 [06/04/2025]</span>
+                                <p class="text-gray-800 text-lg">Rama Navami Mahamahotsav.</p>
+                            </div>
+
+                            <!-- News Item 4 -->
+                            <div
+                                class="fade-in flex items-start bg-gray-50 border-l-4 border-gray-500 p-4 shadow-sm rounded-md">
+                                <span class="text-gray-700 text-lg font-bold mr-3">📅 [06/05/2025]</span>
+                                <p class="text-gray-800 text-lg">Gaur Mandal Parikrama.</p>
+                            </div>
+
+                            <!-- News Item 5 -->
+                            <div
+                                class="fade-in flex items-start bg-gray-50 border-l-4 border-gray-500 p-4 shadow-sm rounded-md">
+                                <span class="text-gray-700 text-lg font-bold mr-3">📅 [11/05/2025]</span>
+                                <p class="text-gray-800 text-lg">Narashingha Chaturdashi Mahamahotsava.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- JavaScript for Scroll Animation (Re-Triggers Every Time) -->
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const fadeInElements = document.querySelectorAll(".fade-in");
+
+                            const observer = new IntersectionObserver(entries => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        entry.target.classList.add("visible");
+                                    } else {
+                                        entry.target.classList.remove("visible"); // Remove when out of view
+                                    }
+                                });
+                            }, { threshold: 0.3 });
+
+                            fadeInElements.forEach(el => observer.observe(el));
+                        });
+                    </script>
+                </div>
+
+                <div class="my-10 h-[2px] bg-gradient-to-r from-gray-500 via-gray-400 to-gray-300 w-full"></div>
+
+
+                <div class="my-8 bg-gray-50 rounded-lg shadow-md sm:flex flex-col justify-center">
+                    <div class="pt-5">
+                        <h3 class="text-5xl font-extrabold uppercase text-gray-900 uppercase text-center mb-2">
+                            patron
+                        </h3>
+                    </div>
+                    <span class="text-gray-800 text-xl text-center my-6">You can Support Us by contributing through our
+                        different
+                        programs and donation schemes.</span>
+                    <button class="text-center my-6">
+                        <a href="javascript:void(0)"
+                            class="inline-flex items-center justify-center rounded-full border border-blue-500 bg-blue-600 px-7 py-3 text-center text-2xl font-medium text-white hover:border-[#1B44C8] hover:bg-[#1B44C8] active:border-[#1B44C8] active:bg-[#1B44C8] disabled:border-gray-3 disabled:bg-gray-3 disabled:text-dark-5 uppercase">
+                            donation
+                        </a>
+                    </button>
+                </div>
+            </div>
+            <div class="my-10 h-[2px] bg-gradient-to-r from-gray-500 via-gray-400 to-gray-300 w-full"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-container">
+        {% include 'footer.html' %}
+    </div>
+
+</body>
+
+</html>

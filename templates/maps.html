@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Map</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+    <!-- Map Section -->
+    <div class="bg-white shadow-lg rounded-lg p-6 max-w-md w-full text-center">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">📍 Our Location</h2>
+
+        <!-- Square Map Div -->
+        <div class="relative w-full aspect-square border border-gray-300 rounded-md overflow-hidden">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3690.9734966128713!2d87.28736467506985!3d22.316842079674718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1d43e01fc4bc79%3A0x7824c45b9d5c0528!2sDwaraka%20VOICE!5e0!3m2!1sen!2sin!4v1741888770577!5m2!1sen!2sin"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <!-- Button to Open in Google Maps -->
+        <a href="https://maps.app.goo.gl/3eojynKvB23Cqnq28" target="_blank"
+            class="mt-4 inline-block bg-blue-600 text-white px-5 py-2 rounded-md text-lg font-medium hover:bg-blue-700 transition">
+            View Larger Map
+        </a>
+    </div>
+
+</body>
+
+</html>

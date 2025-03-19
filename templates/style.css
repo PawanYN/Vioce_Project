@@ -1,0 +1,63 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.nav1{
+    padding: 10px;
+    display: inline-block;
+    font-size: 50px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: blue;
+    color: aquamarine;
+    text-align: end ;
+}
+
+.nav2{
+    display: inline-block;
+    font-size: 20px;
+    background-color: pink;
+    text-align: justify;
+    position: relative;
+    top: -5vh;
+    
+    
+}
+
+.kgp-dv{
+    display: inline-block;
+    position: relative;
+    top: -5vh;
+}
+
+.nav-bar{
+    display: flex;
+    list-style: none;
+}
+
+.nav-list{
+    padding: 20px;
+}
+
+.voice-logo{
+    border-radius: 50px;
+    height: 100px;
+    border: solid 3px;
+    border-color: black;
+    background-color: white;
+    /* float: left; */
+}
+
+.sp-quote-on-voice{
+    display: flow-root;
+    border: 2px solid black;
+}
+
+.sp-image{
+    display: inline-block;
+    float: left;
+}
+
+.copyright{
+    border: 2px solid black;
+    /* display: flow-root; */
+}

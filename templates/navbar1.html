@@ -1,0 +1,69 @@
+<!-- templates/navbar.html -->
+<div class="navbar">
+    {% if user %}
+        <h2>Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
+    {% else %}
+        <h2>Welcome, Guest</h2>
+    {% endif %}
+    
+    <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('profile') }}">Profile</a>
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+        <div class="profile-container">
+            {% if user and user.profile_picture %}
+                <img src="{{ user.profile_picture }}" alt="Profile Pic" class="profile-pic" id="profilePic">
+            {% else %}
+                <img src="{{ url_for('static', filename='default_profile.png') }}" alt="Default Profile" class="profile-pic" id="profilePic">
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var profilePic = document.getElementById("profilePic");
+        if (profilePic) {
+            profilePic.addEventListener("dblclick", function () {
+                window.location.href = "{{ url_for('profile') }}";
+            });
+        }
+    });
+</script>
+
+<style>
+    /* Navbar */
+    .navbar {
+        background-color: #28a745;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+    }
+    .navbar h2 { margin: 0; }
+    .nav-links {
+        display: flex;
+        align-items: center;
+    }
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-size: 16px;
+    }
+    .nav-links a:hover {
+        text-decoration: underline;
+    }
+    .profile-container {
+        display: flex;
+        align-items: center;
+    }
+    .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+</style>

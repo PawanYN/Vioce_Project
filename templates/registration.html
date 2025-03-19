@@ -1,62 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Page</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        input, select { width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 8px 15px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #218838; }
-        .error { color: red; font-size: 12px; }
-        .success { color: green; font-size: 14px; }
+
+        input,
+        select {
+            width: 50%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
+        .success {
+            color: green;
+            font-size: 14px;
+        }
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-    
+
     <!-- Include the Navbar -->
     {% include 'navbar.html' %}
 
-    <h2>Register</h2>
+    <div class="m-5 text-2xl font-bold text-center">
+        Register
+    </div>
 
     <!-- Flash Messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <p class="{{ category }}">{{ message }}</p>
-            {% endfor %}
-        {% endif %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <p class="{{ category }}">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
     {% endwith %}
 
-    <form action="/register" method="POST" enctype="multipart/form-data">
-        <input type="text" name="first_name" placeholder="First Name" required>
-        <input type="text" name="last_name" placeholder="Last Name" required>
-        <input type="email" name="email" placeholder="Email ID" required>
-        <input type="tel" name="mobile" placeholder="Mobile Number (10 digits)" pattern="[0-9]{10}" required>
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="confirm_password" placeholder="Re-enter Password" required>
+    <form class="flex flex-col justify-center items-center my-5" action="/register" method="POST"
+        enctype="multipart/form-data">
+        <input class="my-2 " type="text" name="first_name" placeholder="First Name" required>
+        <input class="my-2 " type="text" name="last_name" placeholder="Last Name" required>
+        <input class="my-2 " type="email" name="email" placeholder="Email ID" required>
+        <input class="my-2 " type="tel" name="mobile" placeholder="Mobile Number (10 digits)" pattern="[0-9]{10}"
+            required>
+        <input class="my-2 " type="text" name="username" placeholder="Username" required>
+        <input class="my-2 " type="password" name="password" placeholder="Password" required>
+        <input class="my-2 " type="password" name="confirm_password" placeholder="Re-enter Password" required>
 
-        <select name="gender">
+        <select class="my-2" name="gender">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">Other</option>
         </select>
 
-        <input type="date" name="dob" required>
-        <input type="text" name="address" placeholder="City, State, Country">
-        <input type="file" name="profile_picture" accept="image/*">
+        <input class="my-2" type="date" name="dob" required>
+        <input class="my-2" type="text" name="address" placeholder="City, State, Country">
+        <input class="my-2" type="file" name="profile_picture" accept="image/*">
 
         <select name="security_question">
             <option value="pet">What is your first pet's name?</option>
             <option value="mother">What is your mother's maiden name?</option>
             <option value="city">Which city were you born in?</option>
         </select>
-        <input type="text" name="security_answer" placeholder="Security Answer" required>
+        <input class="my-2" type="text" name="security_answer" placeholder="Security Answer" required>
 
-        <button type="submit">Register</button>
+        <button class="rounded-md bg-blue-600 px-7 py-3 text-base font-medium text-white hover:bg-blue-500" type="submit">Register</button>
     </form>
 
 </body>
+
 </html>

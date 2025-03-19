@@ -1,0 +1,61 @@
+.flex {
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    max-width: 90vw;
+    max-height: 30vw;
+    margin: auto;
+    margin-top: 50px;
+}
+
+div.testimonies {
+    display: grid;
+    width: 55vw;
+    box-sizing: border-box;
+    border: 2px solid black;
+    grid-template-rows: 1fr 4fr;
+}
+
+.mission {
+    text-align: center;
+}
+
+div ol {
+    display: grid;
+    margin: 0px;
+}
+
+div.testimonies ol li {
+    border: 2px solid black;
+    margin: 0px 10px 20px 0px;
+    
+    padding: 10px;
+}
+
+div.update-box {
+    display: grid;
+    grid-template-rows: 2fr 8fr;
+    height: 30vw;
+    width: 30vw;
+    border: 2px solid black;
+    padding: 20px;
+    box-sizing: border-box;
+
+}
+
+div .heading {
+    text-align: center;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
+div.mission-content ol li {
+    padding: 5px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: lighter;
+    margin: 10px;
+    height: 50px;
+}

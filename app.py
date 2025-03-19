@@ -108,8 +108,13 @@ def inject_user():
 def inject_utilities():
     return dict(timedelta=timedelta, date=date)
 
-# Login Route
+
 @app.route("/", methods=["GET", "POST"])
+def landing():
+    return render_template("index.html")
+
+# Login Route
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         username = request.form["username"]
@@ -187,16 +192,25 @@ def register():
 @app.route("/home")
 def home():
     if "user_id" not in session:
-        return redirect(url_for("login"))  # Redirect if not logged in
+        return render_template("index.html") # Redirect if not logged in
 
     user = User.query.get(session["user_id"])
-    return render_template("home.html", user=user)
+    return render_template("index.html", user=user)
+
+# Sadhna Page 
+@app.route("/sadhana_home")
+def sadhana_home():
+    if "user_id" not in session:
+        return render_template("index.html") # Redirect if not logged in
+
+    user = User.query.get(session["user_id"])
+    return render_template("sadhana_home.html", user=user)
 
 # Logout Route
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("login"))
+    return render_template("index.html")
 
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
@@ -490,6 +504,10 @@ def history():
 
     return render_template("history.html", sadhana_entries=sadhana_entries, start_date=start_date, end_date=end_date)
 
+# About Us
+@app.route("/about_us")
+def about_us():
+    return render_template("inspiration.html")
 
 
 if __name__ == "__main__":

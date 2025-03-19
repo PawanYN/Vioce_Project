@@ -1,69 +1,185 @@
-<!-- templates/navbar.html -->
-<div class="navbar">
-    {% if user %}
-        <h2>Welcome, {{ user.first_name }} {{ user.last_name }}</h2>
-    {% else %}
-        <h2>Welcome, Guest</h2>
-    {% endif %}
-    
-    <div class="nav-links">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('profile') }}">Profile</a>
-        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
-        <div class="profile-container">
-            {% if user and user.profile_picture %}
-                <img src="{{ user.profile_picture }}" alt="Profile Pic" class="profile-pic" id="profilePic">
-            {% else %}
-                <img src="{{ url_for('static', filename='default_profile.png') }}" alt="Default Profile" class="profile-pic" id="profilePic">
-            {% endif %}
-        </div>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var profilePic = document.getElementById("profilePic");
-        if (profilePic) {
-            profilePic.addEventListener("dblclick", function () {
-                window.location.href = "{{ url_for('profile') }}";
-            });
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Nav bar</title>
+    <!-- <link rel="stylesheet" href="navbar.css"> -->
+    <link rel="stylesheet" href="../src/output.css">
+    <!-- <script defer src="navbar.js"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        /* .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 2px;
         }
-    });
-</script>
 
-<style>
-    /* Navbar */
-    .navbar {
-        background-color: #28a745;
-        padding: 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: white;
-    }
-    .navbar h2 { margin: 0; }
-    .nav-links {
-        display: flex;
-        align-items: center;
-    }
-    .nav-links a {
-        color: white;
-        text-decoration: none;
-        margin-left: 20px;
-        font-size: 16px;
-    }
-    .nav-links a:hover {
-        text-decoration: underline;
-    }
-    .profile-container {
-        display: flex;
-        align-items: center;
-    }
-    .profile-pic {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-left: 10px;
-        cursor: pointer;
-    }
-</style>
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;  
+        }
+
+        .voice-name-navbar {
+            font-family: "Montserrat", serif;
+            font-optical-sizing: auto;
+            font-weight:600;            
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+
+        .items ul {
+            display: flex;
+            gap: 50px;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        .items ul li {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            cursor: pointer;
+        } */
+    </style>
+
+</head>
+
+<body>
+
+    <!-- <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="voice_logo.png" alt="voice-logo">
+                <div class="voice-name-navbar">
+                    <h1>KRISHNAGATIPUR DWARAKA VOICE</h1>
+                </div>
+            </div>
+            <div class="items">
+                <ul>
+                    <li>Home</li>
+                    <li>Sadhna <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
+                            color="#000000" fill="none">
+                            <path d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></a></li>
+                    <li>About Us<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
+                            color="#000000" fill="none">
+                            <path d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9" stroke="currentColor"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg></a></li>
+                    <li>Contact Us</li>
+                    <li>Sign in / Log in</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header> -->
+
+    <header class="flex w-full items-center  bg-gray-800">
+        <div class="container mx-auto max-w-[90vw]">
+            <div class="relative -mx-4 flex items-center justify-between">
+                <div class="flex">
+                    <div class="w-full py-2 flex items-center gap-4">
+                        <a href="">
+
+                            <img class="h-[100px]" src="static/voice_logo.png" alt="voice-logo"
+                                style="filter: invert();">
+                        </a>
+                        <a href="">
+                            <p class="text-gray-300 font-bold text-2xl  hover:text-gray-50">KRISHNAGATIPUR DWARAKA
+                                VOICE
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end px-2">
+                    <div>
+                        <button @click="navbarOpen = !navbarOpen" :class="navbarOpen && 'navbarTogglerActive' "
+                            id="navbarToggler"
+                            class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden">
+                            <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+                            <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+                            <span class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
+                        </button>
+                        <nav :class="!navbarOpen && 'hidden' " id="navbarCollapse"
+                            class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none dark:bg-dark-2 lg:dark:bg-transparent">
+                            <ul class="block lg:flex">
+                                <li>
+                                    <a href="{{ url_for('home')}}"
+                                        class="flex py-2 text-base font-medium lg:ml-12 lg:inline-flex text-gray-400 hover:text-white">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('sadhana_home')}}"
+                                        class="flex py-2 text-base font-medium lg:ml-12 lg:inline-flex text-gray-400 hover:text-white">
+                                        Sadhna
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ url_for('about_us')}}"
+                                        class="flex py-2 text-base font-medium lg:ml-12 lg:inline-flex text-gray-400 hover:text-white">
+                                        About Us
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="javascript:void(0)"
+                                        class="flex py-2 text-base font-medium lg:ml-12 lg:inline-flex text-gray-400 hover:text-white">
+                                        Contact Us
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+                        {% if user %}
+                        <div class="flex items-center space-x-2">
+                            <!-- Display User Name -->
+                            <span class="text-white font-medium">Welcome, {{ user.first_name }} {{ user.last_name
+                                }}</span>
+
+                            <!-- Profile Link -->
+                            <a href="{{ url_for('profile') }}"
+                                class="rounded-md bg-gray-700 px-4 py-2 text-white hover:bg-gray-600">
+                                Profile
+                            </a>
+
+                            <!-- Logout Button -->
+                            <a href="{{ url_for('logout') }}"
+                                class="rounded-md bg-red-600 px-4 py-2 text-white hover:bg-red-500">
+                                Logout
+                            </a>
+                        </div>
+
+                        {% else %}
+
+                        <a href="{{ url_for('login') }}"
+                            class="px-7 py-3 text-base font-medium text-dark hover:text-blue-600 text-white">
+                            Login
+                        </a>
+                        <a href="{{ url_for('register') }}"
+                            class="rounded-md bg-blue-600 px-7 py-3 text-base font-medium text-white hover:bg-blue-500">
+                            Sign Up
+                        </a>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+</body>
+
+</html>

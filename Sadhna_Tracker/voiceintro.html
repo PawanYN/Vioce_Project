@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Introduction</title>
+    <style>
+        nav .grid {
+            display: grid;
+            max-width: 90vw;
+            margin: auto;
+            grid-template-columns: 50vw 40vw;
+            background-color: aqua;
+        }
+
+        div .grid-item-voice-intro {
+            height: 40vw;
+            border: 2px solid black;
+            margin: 5px;
+            text-align: center;
+        }
+
+        div .voice-image {
+            background-image: url("voice_img1.jpg");
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            grid-row: 1/2;
+            grid-column: 1/2;
+        }
+
+        div .content {
+            display: grid;
+            grid-template-rows: 1fr 3fr;
+            margin: 10px;
+        }
+
+        div .voice-name {
+            background-image: url("voice_name.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            border: 2px solid black;
+            border-radius: 10px;
+            margin: 5px 40px;
+
+        }
+
+        div .voice-about {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .voice-about{
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="grid">
+            <div class="grid-item voice-image"></div>
+            <div class="content">
+                <div class="voice-name"></div>
+                <div class="voice-about">
+                    
+                        'VOICE' Stands for Vedic Oasis for Inspiration, Culture and Education.
+
+                        It is an educational wing
+                        of ISKCON, which offer services to all age groups including young children, teenagers, college
+                        youth and working individuals.
+
+                        Every society needs role models which can be emulated by masses. 'VOICE' aims to nurture
+                        individuals who can excel in their personal and professional life. Such individuals will be
+                        leading by example of principle centered living.
+
+                        VOICE Offers various welfare training programs, courses, workshops, camps to faciliate the all
+                        round development of students & corporate professionals.
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</body>
+
+</html>
