@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         .history-container {
             width: 80%;
@@ -98,7 +98,7 @@
                     <td>{{ entry.cleanliness }}</td>
                     <td>{{ entry.sadhana_card_filled }}</td>
                     <td>{{ entry.cleaning_alloted_area }}</td>
-                    <td><a href="{{ url_for('filling_card', date=entry.date.strftime('%Y-%m-%d')) }}">✏️ Edit</a></td>
+                    <td><a href="{{ url_for('sadhana_routes.filling_card', date=entry.date.strftime('%Y-%m-%d')) }}">✏️ Edit</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -115,7 +115,7 @@
             let startDate = document.getElementById("start_date").value;
             let endDate = document.getElementById("end_date").value;
             if (startDate && endDate) {
-                window.location.href = "{{ url_for('history') }}?start_date=" + startDate + "&end_date=" + endDate;
+                window.location.href = "{{ url_for('sadhana_routes.history') }}?start_date=" + startDate + "&end_date=" + endDate;
             }
         }
     </script>

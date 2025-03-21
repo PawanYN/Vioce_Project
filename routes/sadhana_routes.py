@@ -2,6 +2,8 @@ from flask import Flask,Blueprint, render_template, redirect, url_for, request, 
 from flask_login import login_required
 from datetime import date, timedelta , datetime
 from models.sadhana import Sadhana
+from models.target_setting import TargetSetting
+
 sadhana_routes = Blueprint('sadhana_routes', __name__)
 
 @sadhana_routes.route('/sadhana')

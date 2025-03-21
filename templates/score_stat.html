@@ -7,7 +7,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='css/style.css') }}"
     />
     <style>
       .stats-container {
@@ -219,7 +219,7 @@
           let selectedDate = this.value;
           if (selectedDate) {
             window.location.href =
-              "{{ url_for('score_stat') }}?week_start=" + selectedDate;
+              "{{ url_for('sadhana_routes.score_stat') }}?week_start=" + selectedDate;
           }
         });
     </script>
