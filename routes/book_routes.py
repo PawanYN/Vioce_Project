@@ -3,10 +3,11 @@ from flask import Flask,Blueprint, render_template, redirect, url_for, request, 
 from flask_login import login_required
 from models.book import Book
 from models.userbook import UserBook
+from models import db
 
 book_routes = Blueprint('book_routes', __name__)
 
-@book_routes.route('/user_book', methods=["GET", "POST"])
+@book_routes.route('/user_books', methods=["GET", "POST"])
 def user_books():
     if "user_id" not in session:
         return redirect(url_for("login"))  # Redirect if not logged in
@@ -32,13 +33,13 @@ def user_books():
 
         db.session.commit()
         flash("Book statuses updated successfully!", "success")
-        return redirect(url_for("user_books"))
+        return redirect(url_for("book_routes.user_books"))
 
     return render_template("user_books.html", books=books, user_books=user_books)
 
 
 @book_routes.route('/add_book', methods=["POST"])
-@login_required
+
 def add_book():
     if "user_id" not in session:
         return redirect(url_for("login"))
@@ -54,7 +55,7 @@ def add_book():
     return redirect(url_for("controler"))
 
 @book_routes.route('/delete_book/<int:book_id>')
-@login_required
+
 def delete_book(book_id):
     if "user_id" not in session:
         return redirect(url_for("login"))
