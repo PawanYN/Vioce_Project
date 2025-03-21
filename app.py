@@ -513,44 +513,26 @@
 # if __name__ == "__main__":
 #     app.run(debug=True)
 
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+
+from flask import Flask, session
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
-from sqlalchemy import text
-from datetime import date, datetime, timedelta
-from config import Config  # Import Config class
+from datetime import date, timedelta
+from models import db
+from models.user import User  # Import User model
+from routes import navbar_routes, sadhana_routes, book_routes, control_routes, public_routes
 
-# Initialize Flask App
 app = Flask(__name__)
-app.config.from_object(Config)  # Load configuration from Config class
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///users.db"
+app.config['SECRET_KEY'] = '108'
 
-# Initialize Database & Bcrypt
-from models import db  # Import db from models/__init__.py
 db.init_app(app)
-bcrypt = Bcrypt(app)
+bcrypt = Bcrypt(app)  # Initialize bcrypt before using User model
 
-# Import models
-from models.user import User
-from models.book import Book
-from models.sadhana import Sadhana
-
-# Apply changes
 with app.app_context():
     db.create_all()
 
-# Import Blueprints (Routes)
-from routes.auth import auth_bp
-from routes.dashboard import dashboard_bp
-from routes.sadhana import sadhana_bp
-from routes.books import books_bp
-
-# Register Blueprints
-app.register_blueprint(auth_bp)
-app.register_blueprint(dashboard_bp)
-app.register_blueprint(sadhana_bp)
-app.register_blueprint(books_bp)
-
-# Context Processor for injecting user into templates
 @app.context_processor
 def inject_user():
     user = None
@@ -558,16 +540,28 @@ def inject_user():
         user = User.query.get(session["user_id"])
     return dict(user=user, date=date)
 
-# Context Processor for injecting utility functions into templates
 @app.context_processor
 def inject_utilities():
     return dict(timedelta=timedelta, date=date)
 
-# Landing Page Route
-@app.route("/", methods=["GET", "POST"])
-def landing():
-    return render_template("index.html")
+# Initialize LoginManager after app
+login_manager = LoginManager(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))  # Fetch user by ID
+
+login_manager.login_view = 'navbar_routes.login'
+
+# Register Blueprints
+app.register_blueprint(navbar_routes)
+app.register_blueprint(sadhana_routes)
+app.register_blueprint(book_routes)
+app.register_blueprint(control_routes)
+app.register_blueprint(public_routes)
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filling Sadhana Card</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     
@@ -18,7 +18,7 @@
         <div class="content-container">
             <h2>Filling Sadhana Card</h2>
             <!-- Empty for now, will add step by step -->
-            <form method="POST" action="{{ url_for('filling_card', date=selected_date) }}" class="sadhana-form">
+            <form method="POST" action="{{ url_for('sadhana_routes.filling_card', date=selected_date) }}" class="sadhana-form">
                 
                 <label>NIDRA: To Bed</label>
                 <select name="nidra_to_bed">
