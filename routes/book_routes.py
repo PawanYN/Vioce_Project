@@ -1,12 +1,12 @@
 
-from flask import Blueprint, redirect, url_for
+from flask import Flask,Blueprint, render_template, redirect, url_for, request, flash,session
 from flask_login import login_required
-from models import db, Book
+from models.book import Book
+from models.userbook import UserBook
 
 book_routes = Blueprint('book_routes', __name__)
 
 @book_routes.route('/user_book', methods=["GET", "POST"])
-@login_required
 def user_books():
     if "user_id" not in session:
         return redirect(url_for("login"))  # Redirect if not logged in

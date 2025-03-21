@@ -2,10 +2,18 @@ from flask import Flask,Blueprint, render_template, redirect, url_for, request, 
 from flask_login import login_required
 from datetime import date, timedelta , datetime
 from models.sadhana import Sadhana
+from models.user import User
 from models.target_setting import TargetSetting
 
 sadhana_routes = Blueprint('sadhana_routes', __name__)
 
+@sadhana_routes.route('/sadhana_home')
+def sadhana_home():
+    if "user_id" not in session:
+        return render_template("index.html") # Redirect if not logged in
+
+    user = User.query.get(session["user_id"])
+    return render_template("sadhana_home.html", user=user)
 @sadhana_routes.route('/sadhana')
 def sadhana():
     return render_template("sadhana.html",date=date)
